@@ -140,45 +140,103 @@ namespace L20250218
 
     //Generic
     //형태가 동일 해져서 버그 발생이 적어짐
+ 
 
 
     class Program
     {
+        //C# 기본예약어, 객체 프로그래밍 해요, Collection 사용 할줄 알아요. Array, DynamicArray -> 만들어 봤어?
+        // 최적화
+        //Byte -> BitArray
+
+        //oveloading
+        //Generic Progrmmaing -> meta programming
+        static public void Print<T>(T[] data)
+        {
+            for (int i = 0; i < data.Length; ++i)
+            {
+                Console.WriteLine(data[i]);
+            }
+        }
+
+
+        //static public T Add<T>(T A, T B) where T : struct {}
+        //{
+        //    return A + B;
+        //}
+
+        //static public void Print(char[] data)
+        //{
+        //    for (int i = 0; i < data.Length; ++i)
+        //    {
+        //        Console.WriteLine(data[i]);
+        //    }
+        //}
+
+        //static public void Print(string[] data)
+        //{
+        //    for (int i = 0; i < data.Length; ++i)
+        //    {
+        //        Console.WriteLine(data[i]);
+        //    }
+        //}
+
+        class A : IComparable
+        {
+            public int CompareTo(object obj)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         static void Main(string[] args)
         {
-            char A = 'A';
-            char B = 'B';
-            string line = A + B + "*";  
+
+            //int[] numbers = { 1, 2, 3, 4 };
+            //char[] numbersToChar = { 'A', 'B', 'C', 'D' };
+            //string[] numbersToString = { "1111", "2222", "3333", "4444" };
+            //GameObject[] gameObjects = new GameObject[3];
+
+            //gameObjects[0] = new GameObject();
+            //gameObjects[1] = new GameObject();
+            //gameObjects[2] = new GameObject();
+
+            //return;
+
             //[] ->                  variable
             //[][][][][]             array -> Array
             //[][][][][][][][][][]   DynamicArray
             //DataStructure          자료구조
             //
-            DynamicArray a = new DynamicArray();
+            TDynamicArray<int> a = new TDynamicArray<int>();
             for (int i = 0; i < 10; ++i)
             {
                 a.Add(i);
             }
 
-            //DOWN CASTING
-            //boxing - unboxing
-
             a[1] = 11;
             a[9] = 29;
-            
 
             a.RemoveAt(9);
             a.RemoveAt(1);
             a.RemoveAt(3);
             a.Insert(2, 11);
-            a.Insert(4, "배고파");
-            a.Add(new GameObject());
 
-            for (int i = 0; i < a.Count; ++i)
-            {
-                Console.Write(a[i] + ", ");
-            }
+            a.Remove(7);
+
+            TDynamicArray<GameObject> gameObjects = new TDynamicArray<GameObject>();
+
+            GameObject testObject = new GameObject();
+            gameObjects.Add(testObject);
+            Console.WriteLine(gameObjects.Count);
+
+            gameObjects.Remove(testObject);
+            Console.WriteLine(gameObjects.Count);
+
+            //for (int i = 0; i < a.Count; ++i)
+            //{
+            //    Console.Write(a[i] + ", ");
+            //}
         }
     }
 }
